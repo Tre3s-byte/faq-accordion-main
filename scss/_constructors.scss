@@ -1,0 +1,36 @@
+@mixin media($width, $type: max) {
+  @if map-has-key($breakpoints, $width) {
+    $width: map-get($breakpoints, $width);
+    @if $type == min {
+      $width: $width + 1px;
+    }
+    @media (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@mixin weight($weight-name) {
+  font-weight: weight($weight-name);
+}
+
+@mixin indentation {
+  margin-left: 1.2em;
+  margin-top: 1.2em;
+}
+@mixin flex-center($direction, $align: center) {
+  display: flex;
+  justify-content: center;
+  align-items: $align;
+  flex-direction: $direction;
+  flex-wrap: nowrap;
+}
+@mixin box-shadow() {
+  -webkit-box-shadow: 10px 10px 0px -3px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 0px -3px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 0px -3px rgba(0, 0, 0, 1);
+}
